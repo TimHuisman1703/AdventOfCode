@@ -3,15 +3,15 @@
 using namespace std;
 
 int main() {
-    ifstream infile;
-    infile.open("aoc02_input.txt");
+	ifstream infile;
+	infile.open("aoc02_input.txt");
 
-    int x = 0;
+	int x = 0;
 	int y = 0;
 	string d;
 	int s;
-    
-    while(infile >> d) {
+	
+	while(infile >> d) {
 		infile >> s;
 
 		if(d[0] == 'f') {
@@ -21,8 +21,8 @@ int main() {
 		} else if(d[0] == 'd') {
 			y += s;
 		}
-    }
+	}
 	cout << x * y;
 
-    return 0;
+	return 0;
 }
