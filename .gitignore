@@ -1,3 +1,6 @@
 .vscode/
 
+in.json
+out.txt
+
 *.exe
