@@ -23,9 +23,10 @@ class Member:
 				part, time = int(part) - 1, int(time["get_star_ts"])
 				self.completion[day][part] = time
 	
-	def get_timestamp(self, day, part):
+	def get_timestamp(self, year, day, part):
+		start_event = 1448946000 + 31536000 * year + 86400 * ((year + 3) // 4)
+		start = start_event + day * 86400
 		end = self.completion[day][part]
-		start = 1638334800 + day * 86400
 		time = end - start
 
 		if time > 86400:
@@ -58,10 +59,10 @@ owner = f"(anonymous user #{owner_id})"
 for member in members:
 	if member.id == owner_id:
 		owner = member.name
-year = leaderboard["event"]
+year = int(leaderboard["event"]) - 2015
 
 # Print title
-f.write(f"Leaderboard of {owner} (Advent of Code {year})\n\n")
+f.write(f"Leaderboard of {owner} (Advent of Code {year + 2015})\n\n")
 
 # List by stars
 members = sorted(members, key=lambda x: -x.global_score)
@@ -105,7 +106,7 @@ for day in range(25):
 			member = members[i]
 			if member.completion[day][part] == MAX_VALUE:
 				break
-			f.write(f"\n    {str(i + 1).rjust(log_n) + ')':<4} {str(member.name):<{name_length+1}} {member.get_timestamp(day, part)}")
+			f.write(f"\n    {str(i + 1).rjust(log_n) + ')':<4} {str(member.name):<{name_length+1}} {member.get_timestamp(year, day, part)}")
 if first_day:
 	f.write("\n  Nothing yet...")
 
