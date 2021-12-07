@@ -1,4 +1,15 @@
 file = open("aoc07_input.txt")
-l = file.read().split("\n")
+l = [int(j) for j in file.read().split(",")]
 file.close()
 
+m = 10**100
+
+for i in range(min(l), max(l) + 1):
+	c = 0
+	for crab in l:
+		n = abs(crab - i)
+		c += n
+	if c < m:
+		m = c
+
+print(m)
