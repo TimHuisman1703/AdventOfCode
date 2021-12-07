@@ -4,6 +4,16 @@ import os
 DIRECTORY = os.path.dirname(__file__)
 MAX_VALUE = 10**10
 
+def unix_to_time(time):
+	if time > 86400:
+		return  "    >24h"
+	
+	hours = time // 3600
+	minutes = (time // 60) % 60
+	seconds = time % 60
+
+	return f"{hours:02}:{minutes:02}:{seconds:02}"
+
 class Member:
 	def __init__(self, data):
 		self.id = data["id"]
@@ -29,14 +39,7 @@ class Member:
 		end = self.completion[day][part]
 		time = end - start
 
-		if time > 86400:
-			return  "    >24h"
-		
-		hours = time // 3600
-		minutes = (time // 60) % 60
-		seconds = time % 60
-
-		return f"{hours:02}:{minutes:02}:{seconds:02}"
+		return unix_to_time(time)
 
 f = open(f"{DIRECTORY}/in.json")
 json_input = f.read()
@@ -107,6 +110,8 @@ for day in range(25):
 			if member.completion[day][part] == MAX_VALUE:
 				break
 			f.write(f"\n    {str(i + 1).rjust(log_n) + ')':<4} {str(member.name):<{name_length+1}} {member.get_timestamp(year, day, part)}")
+			if part == 1:
+				f.write(f"    (+{unix_to_time(member.completion[day][1] - member.completion[day][0])})")
 if first_day:
 	f.write("\n  Nothing yet...")
 
