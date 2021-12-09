@@ -1,7 +1,7 @@
 import json
 import os
 
-DIRECTORY = os.path.dirname(__file__)
+DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 MAX_VALUE = 10**10
 
 def unix_to_time(time):
