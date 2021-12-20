@@ -1,26 +1,33 @@
+from os import replace
+
+
 file = open("aoc19_input.txt")
-l = [j for j in file.read().split("\n")]
+l = file.read().split("\n")
 file.close()
 
-d = dict()
+for i in range(len(l)):
+	l[i] = l[i] \
+		.replace("Al", "A") \
+		.replace("Ar", "G") \
+		.replace("Ca", "D") \
+		.replace("e", "E") \
+		.replace("Mg", "M") \
+		.replace("Rn", "R") \
+		.replace("Si", "S") \
+		.replace("Th", "T") \
+		.replace("Ti", "U")
+
+d = {}
 
 i = 0
 while l[i]:
-	s = l[i].split(" => ")
-	if s[0] not in d.keys():
-		d.setdefault(s[0], [])
+	a, b = l[i].split(" => ")
+	if a not in d.keys():
+		d[a] = []
 	
-	d[s[0]].append(s[1])
+	d[a] += [b]
 	i += 1
 
-t = l[i+1]
+s = l[i+1]
 
-p = 1
-i = 0
-while i < len(t):
-	if t[i].isUpper():
-		c = t[i]
-		p *= len(c)-1
-		i += d[c][0]
-
-print(p)
+print(len(s))
