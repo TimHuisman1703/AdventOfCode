@@ -1,5 +1,5 @@
 file = open("aoc13_input.txt")
-g = file.read().split("\n")
+g = [list(j) for j in file.read().split("\n")]
 file.close()
 
 pos = []
@@ -10,24 +10,24 @@ for iy in range(len(g)):
 		if g[iy][ix] == "^":
 			pos.append((ix, iy))
 			dir.append((0, -1))
-			g[iy] = g[iy][:ix] + "|" + g[iy][ix+1:]
+			g[iy][ix] = "|"
 		elif g[iy][ix] == "v":
 			pos.append((ix, iy))
 			dir.append((0, 1))
-			g[iy] = g[iy][:ix] + "|" + g[iy][ix+1:]
+			g[iy][ix] = "|"
 		elif g[iy][ix] == "<":
 			pos.append((ix, iy))
 			dir.append((-1, 0))
-			g[iy] = g[iy][:ix] + "-" + g[iy][ix+1:]
+			g[iy][ix] = "-"
 		elif g[iy][ix] == ">":
 			pos.append((ix, iy))
 			dir.append((1, 0))
-			g[iy] = g[iy][:ix] + "-" + g[iy][ix+1:]
+			g[iy][ix] = "-"
 
 state = [-1 for _ in range(len(pos))]
 
 while 1:
-	for i in range(len(pos)):
+	for i in sorted(range(len(pos)), key=lambda j: pos[j]):
 		x, y = pos[i][0] + dir[i][0], pos[i][1] + dir[i][1]
 		pos[i] = (x, y)
 		
