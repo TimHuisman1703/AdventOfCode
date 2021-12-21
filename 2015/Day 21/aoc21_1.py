@@ -51,21 +51,27 @@ for i in range(len(rings) - 1):
 		z_choices.append((rings[i][0] + rings[j][0], rings[i][1] + rings[j][1], rings[i][2] + rings[j][2]))
 z_choices = sorted(z_choices)
 
-q = [(x_choices[0], 0, 0, 0)]
+q = [(x_choices[0][0], 0, 0, 0)]
 visited = set()
 while 1:
 	curr = heapq.heappop(q)
+	if curr in visited:
+		continue
 	visited.add(curr)
-
 	
-	if fight()
+	cost = curr[0]
+	user_dam = x_choices[curr[1]][1] + y_choices[curr[2]][1] + z_choices[curr[3]][1]
+	user_arm = x_choices[curr[1]][2] + y_choices[curr[2]][2] + z_choices[curr[3]][2]
+	if fight(100, user_dam, user_arm, boss_hp, boss_dam, boss_arm):
+		print(cost)
+		break
 
-	if curr[0] < len(x_choices) - 1:
-		cost = curr[0] + x_choices[curr[1] + 1] - x_choices[curr[1]]
+	if curr[1] < len(x_choices) - 1:
+		cost = curr[0] + x_choices[curr[1] + 1][0] - x_choices[curr[1]][0]
 		heapq.heappush(q, (cost, curr[1] + 1, curr[2], curr[3]))
-	if curr[1] < len(y_choices) - 1:
-		cost = curr[0] + y_choices[curr[2] + 1] - y_choices[curr[2]]
+	if curr[2] < len(y_choices) - 1:
+		cost = curr[0] + y_choices[curr[2] + 1][0] - y_choices[curr[2]][0]
 		heapq.heappush(q, (cost, curr[1], curr[2] + 1, curr[3]))
-	if curr[2] < len(z_choices) - 1:
-		cost = curr[0] + z_choices[curr[3] + 1] - z_choices[curr[3]]
+	if curr[3] < len(z_choices) - 1:
+		cost = curr[0] + z_choices[curr[3] + 1][0] - z_choices[curr[3]][0]
 		heapq.heappush(q, (cost, curr[1], curr[2], curr[3] + 1))
