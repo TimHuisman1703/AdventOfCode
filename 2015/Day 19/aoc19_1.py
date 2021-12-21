@@ -1,6 +1,3 @@
-from os import replace
-
-
 file = open("aoc19_input.txt")
 l = file.read().split("\n")
 file.close()
