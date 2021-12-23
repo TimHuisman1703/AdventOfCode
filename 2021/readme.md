@@ -5,4 +5,4 @@ Let's have some fun! :)
 ## Plan
 
 - Write solution in Python as quick as possible.
-- Rewrite solution in C++ to get familiar with the language.
+- Rewrite solution in C++ to get familiar with the language. (Well, that didn't last long...)
