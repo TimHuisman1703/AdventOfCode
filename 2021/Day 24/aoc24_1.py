@@ -15,9 +15,9 @@ for i in range(14):
 
 		d = a + b
 		if d > 0:
-			r[i], r[j] = 9, 9 - d
+			r[j], r[i] = 9 - d ,9
 		else:
-			r[i], r[j] = 9 + d, 9
+			r[j], r[i] = 9, 9 + d
 
 print(*r, sep="")
 
