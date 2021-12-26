@@ -2,29 +2,22 @@ file = open("aoc19_input.txt")
 l = file.read().split("\n")
 file.close()
 
-for i in range(len(l)):
-	l[i] = l[i] \
-		.replace("Al", "A") \
-		.replace("Ar", "G") \
-		.replace("Ca", "D") \
-		.replace("e", "E") \
-		.replace("Mg", "M") \
-		.replace("Rn", "R") \
-		.replace("Si", "S") \
-		.replace("Th", "T") \
-		.replace("Ti", "U")
-
 d = {}
 
-i = 0
-while l[i]:
-	a, b = l[i].split(" => ")
+for i in l[:-2]:
+	a, b = i.split(" => ")
 	if a not in d.keys():
 		d[a] = []
 	
 	d[a] += [b]
-	i += 1
 
-s = l[i+1]
+m = l[-1]
+
+s = set()
+for i in range(len(m)):
+	for key, value in d.items():
+		if m[i:i+len(key)] == key:
+			for j in value:
+				s.add(m[:i] + j + m[i+len(key):])
 
 print(len(s))
