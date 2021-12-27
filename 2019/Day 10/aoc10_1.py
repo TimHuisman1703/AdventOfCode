@@ -2,28 +2,43 @@ file = open("aoc10_input.txt")
 l = file.read().split("\n")
 file.close()
 
+from math import gcd
+
 asteroids = set()
 for iy in range(len(l)):
 	for ix in range(len(l[0])):
 		if l[iy][ix] == "#":
 			asteroids.add((ix, iy))
 
-best = 0
-for a in asteroids:
-	left = set()
-	right = set()
-	up = down = 0
-	for b in asteroids:
-		if b[0] < a[0]:
-			left.add((b[1] - a[1]) / (b[0] - a[0]))
-		elif b[0] > a[0]:
-			right.add((b[1] - a[1]) / (b[0] - a[0]))
-		elif b[1] < a[1]:
-			up = 1
-		elif b[1] > a[1]:
-			down = 1
-	
-	score = len(left) + len(right) + up + down
-	best = max(best, score)
+def get_in_vision(asteroids, a):
+	seen = {}
 
-print(best)
+	for b in asteroids:
+		dist = (b[0] - a[0], b[1] - a[1])
+
+		if dist == (0, 0):
+			continue
+		
+		if dist[0] == 0:
+			key = (0, dist[1] // abs(dist[1]))
+		elif dist[1] == 0:
+			key = (dist[0] // abs(dist[0]), 0)
+		else:
+			d = gcd(dist[0], dist[1])
+			key = (dist[0] // d, dist[1] // d)
+		
+		if key in seen.keys():
+			if abs(sum(seen[key])) < abs(sum(dist)):
+				continue
+		
+		seen[key] = dist
+	
+	return seen
+
+m = 0
+for a in asteroids:
+	seen = get_in_vision(asteroids, a)
+	
+	m = max(m, len(seen))
+
+print(m)
