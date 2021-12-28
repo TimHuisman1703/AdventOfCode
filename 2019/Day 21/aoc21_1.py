@@ -137,18 +137,18 @@ class IntCode:
 		return string + f" [b = {self.base}]" + " < " + " < ".join(str(j) for j in self.input)
 
 instr = [
-	"NOT D J\n"		# Set J to 1
-	"OR D J\n"
-	"AND A J\n"		# If A, B or C is non-landable, set J to 0
-	"AND B J\n"
-	"AND C J\n"
-	"NOT J J\n"		# If A, B or C is non-landable, J == 1 here
-	"AND D J\n"		# If D is not landable, set J to 0
+	"NOT D J",		# Set J to 1
+	"OR D J",
+	"AND A J",		# If A, B or C is non-landable, set J to 0
+	"AND B J",
+	"AND C J",
+	"NOT J J",		# If A, B or C is non-landable, J == 1 here
+	"AND D J",		# If D is not landable, set J to 0
 	# Iff jumping is considered, J == 1 here
 
-	"WALK\n"
+	"WALK"
 ]
-instr = [ord(j) for j in "".join(instr)]
+instr = [ord(j) for j in "\n".join(instr) + "\n"]
 
 intcode = IntCode(l)
 output, reason = intcode.run(instr)

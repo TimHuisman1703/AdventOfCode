@@ -137,28 +137,28 @@ class IntCode:
 		return string + f" [b = {self.base}]" + " < " + " < ".join(str(j) for j in self.input)
 
 instr = [
-	"NOT D J\n"		# Set J to 1
-	"OR D J\n"
-	"AND A J\n"		# If A, B or C is non-landable, set J to 0
-	"AND B J\n"
-	"AND C J\n"
-	"NOT J J\n"		# If A, B or C is non-landable, J == 1 here
-	"AND D J\n"		# If D is not landable, set J to 0
+	"NOT D J",		# Set J to 1
+	"OR D J",
+	"AND A J",		# If A, B or C is non-landable, set J to 0
+	"AND B J",
+	"AND C J",
+	"NOT J J",		# If A, B or C is non-landable, J == 1 here
+	"AND D J",		# If D is not landable, set J to 0
 	# Iff jumping is considered, J == 1 here
 
-	"NOT J T\n"		# Set T to 0 (assuming jumping is still considered, else it doesn't matter)
-	"OR F T\n"		# If F or I is landable, set T to 1
-	"OR I T\n"
-	"AND E T\n"		# If E wasn't landable to begin with, set T to 0
+	"NOT J T",		# Set T to 0 (assuming jumping is still considered, else it doesn't matter)
+	"OR F T",		# If F or I is landable, set T to 1
+	"OR I T",
+	"AND E T",		# If E wasn't landable to begin with, set T to 0
 	# Iff a path from E is survivable, T == 1 here
 
-	"OR H T\n"		# If H is landable, set T to 1
-	"AND T J\n"		# If jumping is considered and survivable, set J to 1
+	"OR H T",		# If H is landable, set T to 1
+	"AND T J",		# If jumping is considered and survivable, set J to 1
 	# Iff jumping is survivable, J == 1 here
 
-	"RUN\n"
+	"RUN"
 ]
-instr = [ord(j) for j in "".join(instr)]
+instr = [ord(j) for j in "\n".join(instr) + "\n"]
 
 intcode = IntCode(l)
 output, reason = intcode.run(instr)
