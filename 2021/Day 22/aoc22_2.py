@@ -2,7 +2,7 @@ file = open("aoc22_input.txt")
 l = file.read().split("\n")
 file.close()
 
-def diff_cube(c, d, on=False):
+def diff_cube(c, d):
 	cx, cy, cz = c
 	dx, dy, dz = d
 	if (cx[0] >= dx[1] or dx[0] >= cx[1]) \
