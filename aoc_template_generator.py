@@ -1,27 +1,25 @@
 import os
 
-YEAR = 2015
-FILE = str(__file__)
+YEAR = 2022
+DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-location = "/".join(FILE.split("/")[:-1])
-
-name = f"{location}/{YEAR}"
+name = f"{DIRECTORY}/{YEAR}"
 if not os.path.exists(name):
 	os.mkdir(name)
 
 for day in range(1, 26):
-	name = f"{location}/{YEAR}/Day {day:02d}"
+	name = f"{DIRECTORY}/{YEAR}/Day {day:02d}"
 	if not os.path.exists(name):
 		os.mkdir(name)
 
 	for i in range(1, 2 + int(day != 25)):
-		name = f"{location}/{YEAR}/Day {day:02d}/aoc{day:02d}_{i}.py"
+		name = f"{DIRECTORY}/{YEAR}/Day {day:02d}/aoc{day:02d}_{i}.py"
 		if not os.path.exists(name):
 			f = open(name, "w")
 			f.write(f'file = open("aoc{day:02d}_input.txt")\nl = file.read().split("\\n")\nfile.close()\n\n')
 			f.close()
 	
-	name = f"{location}/{YEAR}/Day {day:02d}/aoc{day:02d}_input.txt"
+	name = f"{DIRECTORY}/{YEAR}/Day {day:02d}/aoc{day:02d}_input.txt"
 	if not os.path.exists(name):
 		f = open(name, "w")
 		f.close()
