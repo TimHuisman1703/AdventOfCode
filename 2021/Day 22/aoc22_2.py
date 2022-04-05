@@ -48,7 +48,7 @@ for i in l:
 	new_cubes = []
 
 	for c in cubes:
-		new_cubes.extend(diff_cube(c, d, on))
+		new_cubes.extend(diff_cube(c, d))
 	cubes = new_cubes
 
 	if on:
