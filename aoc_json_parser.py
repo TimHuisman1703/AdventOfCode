@@ -41,7 +41,7 @@ class Member:
 
 		return unix_to_time(time)
 
-f = open(f"{DIRECTORY}/in.json")
+f = open(f"{DIRECTORY}/in.json", encoding="utf-8")
 json_input = f.read()
 leaderboard = json.loads(json_input)
 f.close()
@@ -55,7 +55,7 @@ if len(members) == 0:
 log_n = 1 + (len(members) > 9) + (len(members) > 99)
 name_length = max(len(m.name) for m in members)
 
-f = open(f"{DIRECTORY}/out.txt", "w")
+f = open(f"{DIRECTORY}/out.txt", "w", encoding="utf-8")
 
 owner_id = leaderboard["owner_id"]
 owner = f"(anonymous user #{owner_id})"
@@ -68,27 +68,21 @@ year = int(leaderboard["event"]) - 2015
 f.write(f"Leaderboard of {owner} (Advent of Code {year + 2015})\n\n")
 
 # List by stars
-members = sorted(members, key=lambda x: -x.global_score)
-members = sorted(members, key=lambda x: -x.local_score)
-members = sorted(members, key=lambda x: -x.stars)
+members = sorted(members, key=lambda x: (-x.stars, -x.local_score, -x.global_score))
 f.write("--- Stars ---")
 for i in range(len(members)):
 	member = members[i]
 	f.write(f"\n{str(i + 1).rjust(log_n) + ')':<4} {str(member.name):<{name_length+1}} {member.stars:<4}" + "*" * member.stars)
 
 # List by local score
-members = sorted(members, key=lambda x: -x.stars)
-members = sorted(members, key=lambda x: -x.global_score)
-members = sorted(members, key=lambda x: -x.local_score)
+members = sorted(members, key=lambda x: (-x.local_score, -x.global_score, -x.stars))
 f.write("\n\n--- Local Score ---")
 for i in range(len(members)):
 	member = members[i]
 	f.write(f"\n{str(i + 1).rjust(log_n) + ')':<4} {str(member.name):<{name_length+1}} {member.local_score}")
 
 # List by global score
-members = sorted(members, key=lambda x: -x.stars)
-members = sorted(members, key=lambda x: -x.local_score)
-members = sorted(members, key=lambda x: -x.global_score)
+members = sorted(members, key=lambda x: (-x.global_score, -x.local_score, -x.stars))
 f.write("\n\n--- Global Score ---")
 for i in range(len(members)):
 	member = members[i]
