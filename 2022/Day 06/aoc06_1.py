@@ -1,4 +1,9 @@
 file = open("aoc06_input.txt")
-l = file.read().split("\n")
+s = file.read()
 file.close()
 
+i = 4
+while len(set([*s[i-4:i]])) < 4:
+    i += 1
+
+print(i)
