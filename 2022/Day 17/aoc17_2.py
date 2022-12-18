@@ -23,7 +23,7 @@ last_seen = {}
 while i < N:
     curr = [(jx + 3, jy + my + 4) for jx, jy in rocks[i % 5]]
 
-    key = (i % 5, j, sum(g[my][j] * 2 ** j for j in range(9)))
+    key = (i % 5, j)
     if key in last_seen:
         pi, pmy = last_seen[key]
         di = i - pi
@@ -32,7 +32,8 @@ while i < N:
         i += n * di
         extra = n * dmy
         last_seen = {}
-    last_seen[key] = (i, my)
+    if i > 1000:
+        last_seen[key] = (i, my)
 
     while 1:
         if s[j] == "<":
