@@ -5,17 +5,17 @@ file.close()
 delay = 0
 
 while True:
-	caught = False
+    caught = False
 
-	for layer in l:
-		r, d = [int(j) for j in layer.split(": ")]
+    for layer in l:
+        r, d = [int(j) for j in layer.split(": ")]
 
-		if (r + delay) % (2*d - 2) == 0:
-			caught = True
-			break
-	
-	if not caught:
-		print(delay)
-		break
-	
-	delay += 1
+        if (r + delay) % (2*d - 2) == 0:
+            caught = True
+            break
+    
+    if not caught:
+        print(delay)
+        break
+    
+    delay += 1

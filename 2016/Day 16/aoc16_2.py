@@ -5,10 +5,10 @@ file.close()
 length = 35651584
 
 def dragonize(s):
-	return s + "0" + s[::-1].replace("0", "X").replace("1", "0").replace("X", "1")
+    return s + "0" + s[::-1].replace("0", "X").replace("1", "0").replace("X", "1")
 
 while len(s) < length:
-	s = dragonize(s)
+    s = dragonize(s)
 s = s[:length]
 
 print("Done dragonizing")

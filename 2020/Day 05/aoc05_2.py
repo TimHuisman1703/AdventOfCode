@@ -6,12 +6,12 @@ m = 0
 s = []
 
 for i in l:
-	s.append(int(i, 2))
+    s.append(int(i, 2))
 
 s = sorted(s)
 
 print(s)
 
 for i in range(1, len(s)):
-	if s[i] != s[i-1]+1:
-		print(s[i]-1)
+    if s[i] != s[i-1]+1:
+        print(s[i]-1)

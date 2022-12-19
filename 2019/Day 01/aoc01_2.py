@@ -4,11 +4,11 @@ file.close()
 
 s = 0
 for i in l:
-	c = i
-	while c > 0:
-		c = c // 3 - 2
+    c = i
+    while c > 0:
+        c = c // 3 - 2
 
-		if c > 0:
-			s += c
+        if c > 0:
+            s += c
 
 print(s)

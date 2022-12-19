@@ -11,9 +11,9 @@ w = [0]*len(l)
 w[0] = 1
 
 for i in range(1, len(l)):
-	for j in range(1, 4):
-		if i-j > -1 and l[i-j] < l[i] <= l[i-j]+3:
-			w[i] += w[i-j]
+    for j in range(1, 4):
+        if i-j > -1 and l[i-j] < l[i] <= l[i-j]+3:
+            w[i] += w[i-j]
 
 print(w)
 print(w[len(w)-1])

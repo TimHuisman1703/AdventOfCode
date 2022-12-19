@@ -5,6 +5,6 @@ file.close()
 s = 0
 
 for i in l:
-	s += len(i) - len(eval(i))
+    s += len(i) - len(eval(i))
 
 print(s)

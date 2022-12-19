@@ -7,20 +7,20 @@ d = {1: 1}
 
 i = 1
 while d[i] < p:
-	n = 49
-	j = i
-	while n:
-		n -= 1
-		j += i
-		try:
-			d[j] += i
-		except:
-			d[j] = i + j
-	
-	i += 1
-	try:
-		d[i]
-	except:
-		d[i] = 0
+    n = 49
+    j = i
+    while n:
+        n -= 1
+        j += i
+        try:
+            d[j] += i
+        except:
+            d[j] = i + j
+    
+    i += 1
+    try:
+        d[i]
+    except:
+        d[i] = 0
 
 print(i)

@@ -6,22 +6,22 @@ g = []
 row = []
 
 for s in l[2:]:
-	while "  " in s:
-		s = s.replace("  ", " ")
-	args = s.split()
-	
-	_, x, y = args[0].split("-")
-	x, y = int(x[1:]), int(y[1:])
-	size = int(args[1][:-1])
-	used = int(args[2][:-1])
-	available = int(args[3][:-1])
+    while "  " in s:
+        s = s.replace("  ", " ")
+    args = s.split()
+    
+    _, x, y = args[0].split("-")
+    x, y = int(x[1:]), int(y[1:])
+    size = int(args[1][:-1])
+    used = int(args[2][:-1])
+    available = int(args[3][:-1])
 
-	if y == 0:
-		if row:
-			g.append(row)
-		row = []
-	c = "_.#"[1 - int(used == 0) + int(size > 500)]
-	row.append(c)
+    if y == 0:
+        if row:
+            g.append(row)
+        row = []
+    c = "_.#"[1 - int(used == 0) + int(size > 500)]
+    row.append(c)
 g.append(row)
 
 g[-1][0] = "G"

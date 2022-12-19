@@ -4,6 +4,6 @@ file.close()
 
 s = 0
 for i in l:
-	s += i // 3 - 2
+    s += i // 3 - 2
 
 print(s)

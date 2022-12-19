@@ -6,18 +6,18 @@ r = [0 for _ in range(14)]
 
 stack = []
 for i in range(14):
-	if code[18 * i + 4] == "div z 1":
-		a = int(code[18 * i + 15].split()[-1])
-		stack.append((i, a))
-	else:
-		a = int(code[18 * i + 5].split()[-1])
-		j, b = stack.pop()
+    if code[18 * i + 4] == "div z 1":
+        a = int(code[18 * i + 15].split()[-1])
+        stack.append((i, a))
+    else:
+        a = int(code[18 * i + 5].split()[-1])
+        j, b = stack.pop()
 
-		d = a + b
-		if d > 0:
-			r[j], r[i] = 9 - d ,9
-		else:
-			r[j], r[i] = 9, 9 + d
+        d = a + b
+        if d > 0:
+            r[j], r[i] = 9 - d ,9
+        else:
+            r[j], r[i] = 9, 9 + d
 
 print(*r, sep="")
 

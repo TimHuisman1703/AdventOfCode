@@ -5,6 +5,6 @@ file.close()
 s = 0
 
 for i in l:
-	s += 2 + len(i.replace("\\", "\\\\").replace("\"", "\\\"").replace("'", "\\'"))-len(i)
+    s += 2 + len(i.replace("\\", "\\\\").replace("\"", "\\\"").replace("'", "\\'"))-len(i)
 
 print(s)

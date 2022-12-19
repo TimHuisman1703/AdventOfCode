@@ -5,7 +5,7 @@ file.close()
 m = 0
 
 for i in l:
-	if int(i, 2) > m:
-		m = int(i, 2)
+    if int(i, 2) > m:
+        m = int(i, 2)
 
 print(m)

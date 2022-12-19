@@ -5,18 +5,18 @@ file.close()
 t = l[0]
 
 for i in range(40):
-	r = ""
-	c = 1
-	n = t[0]
-	for j in range(1, len(t)):
-		if t[j] == t[j-1]:
-			c += 1
-		else:
-			r += str(c)+t[j-1]
-			n = t[j]
-			c = 1
-	r += str(c)+t[-1]
+    r = ""
+    c = 1
+    n = t[0]
+    for j in range(1, len(t)):
+        if t[j] == t[j-1]:
+            c += 1
+        else:
+            r += str(c)+t[j-1]
+            n = t[j]
+            c = 1
+    r += str(c)+t[-1]
 
-	t = r
+    t = r
 
 print(len(t))

@@ -4,5 +4,5 @@ file.close()
 
 s = 0
 for i in range(len(l)):
-	s += int(l[i][(3*i)%len(l[i])] == "#")
+    s += int(l[i][(3*i)%len(l[i])] == "#")
 print(s)

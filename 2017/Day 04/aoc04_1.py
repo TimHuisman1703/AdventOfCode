@@ -4,8 +4,8 @@ file.close()
 
 result = 0
 for row in l:
-	words = row.split()
-	if len(set(words)) == len(words):
-		result += 1
+    words = row.split()
+    if len(set(words)) == len(words):
+        result += 1
 
 print(result)

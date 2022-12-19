@@ -4,7 +4,7 @@ file.close()
 
 c = 0
 for i in range(3, len(l)):
-	if l[i-3] < l[i]:
-		c += 1
+    if l[i-3] < l[i]:
+        c += 1
 
 print(c)
