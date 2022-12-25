@@ -2,7 +2,7 @@ file = open("aoc24_input.txt")
 g = file.read().split("\n")
 file.close()
 
-import heapq
+from collections import deque
 
 b = []
 for iy in range(len(g)):
@@ -16,13 +16,13 @@ total = 0
 for stage in range(3):
     gx, gy = [(width - 2, height - 1), (1, 0)][stage % 2]
     sx, sy = [(width - 2, height - 1), (1, 0)][1 - stage % 2]
-    q = [(0, sx, sy)]
+    q = deque([(0, sx, sy)])
     visited = set()
     prev_cost = 0
     blocked = set()
 
     while q:
-        cost, x, y = heapq.heappop(q)
+        cost, x, y = q.popleft()
 
         if prev_cost < cost:
             visited = set()
@@ -52,6 +52,6 @@ for stage in range(3):
             nx = x + (i == 0) - (i == 2)
             ny = y + (i == 1) - (i == 3)
             if nx > 0 and nx < width - 1 and (ny > 0 or nx == 1) and (ny < height - 1 or nx == width - 2):
-                heapq.heappush(q, (cost + 1, nx, ny))
+                q.append((cost + 1, nx, ny))
 
 print(total)
