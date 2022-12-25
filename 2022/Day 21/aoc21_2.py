@@ -18,20 +18,21 @@ def f(s, choice):
     a, op, b = d[s]
     return eval(f"{f(a, choice)} {op} {f(b, choice)}")
 
-A = "ddzt"
-B = "rmtp"
+node_a, _, node_b = d["root"]
+if f(node_a, 0) == f(node_a, 1):
+    node_a, node_b = node_b, node_a
 
-goal = f(B, 0)
+goal = f(node_b, 0)
 
 a = 0
 b = 1
-while f(A, b) > goal:
+while f(node_a, b) > goal:
     b *= 2
 
 while a != b:
     mid = (a + b + 1) // 2
-    value = f(A, mid)
-    if f(A, mid) < goal:
+    value = f(node_a, mid)
+    if f(node_a, mid) < goal:
         b = mid - 1
     else:
         a = mid
