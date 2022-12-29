@@ -19,6 +19,8 @@ for id in range(3):
         [int(desc[3][4]), 0, int(desc[3][7]), 0],
     ]
 
+    max_bots = [max(req[j][0] for j in range(4)), req[2][1], req[3][2], 10 ** 10]
+
     q = deque([(N, (0, 0, 0, 0), (1, 0, 0, 0))])
     m = 0
     last_left = N
@@ -38,9 +40,6 @@ for id in range(3):
         if left == 0:
             m = max(m, curr_mats[3])
             continue
-        
-        if bots[0] > 4:
-            continue
 
         if curr_mats[3] + 2 < best:
             continue
@@ -56,15 +55,17 @@ for id in range(3):
             if all(key[j] <= d[j] for j in range(8)):
                 dom = -1
                 break
-        
+
         if dom == 1:
             dominant = [d for d in dominant if not all(d[j] <= key[j] for j in range(8))]
         if dom == -1:
             continue
-        
+
         dominant.append(key)
 
         for i in range(3, -1, -1):
+            if bots[i] == max_bots[i]:
+                continue
             for j in range(4):
                 if req[i][j] > mats[j]:
                     break
