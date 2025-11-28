@@ -2,18 +2,19 @@ import os
 
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-year = input("Year: ")
+year = int(input("Year: "))
 
 name = f"{DIRECTORY}/{year}"
 if not os.path.exists(name):
     os.mkdir(name)
 
-for day in range(1, 26):
+days = 25 if year <= 2024 else 12
+for day in range(1, days + 1):
     name = f"{DIRECTORY}/{year}/Day {day:02d}"
     if not os.path.exists(name):
         os.mkdir(name)
 
-    for i in range(1, 2 + (day != 25)):
+    for i in range(1, 2 + (day != days)):
         name = f"{DIRECTORY}/{year}/Day {day:02d}/aoc{day:02d}_{i}.py"
         if not os.path.exists(name):
             f = open(name, "w")
